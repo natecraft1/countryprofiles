@@ -1,2 +1,2 @@
-<h1>Help Page</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<% provide(:content, "Help Page") %>
+<h1><%= yield(:content) %></h1>

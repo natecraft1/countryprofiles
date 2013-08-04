@@ -7,20 +7,20 @@ var canvas = d3.select("body")
 	.attr("width", width)
 	.attr("height", height)
 	.append('g')
-	.attr("transform", "translate(10, 10)");		
+	.attr("transform", "translate(10, 10)");	
+
 var circles = canvas.selectAll('circle')
 	.data(data)
 	.enter()
 	.append('circle')
-	.attr('cx', function(d) {return widthscale(d);})
-	.attr('cy', function(d) {return widthscale(d);})
-	.attr('r', function(d) {return widthscale(Math.sqrt(d));})
+	.attr('cx', function(d) {return d;})
+	.attr('cy', function(d) {return d;})
+	.attr('r', function(d) {return d;})
 	.attr('fill', 'blue');
 
-
-		var widthscale = d3.scale.linear()
-						.domain([0, 170])
-						.range([0, width]);
+// var widthscale = d3.scale.linear()
+// 	.domain([0, 170])
+// 	.range([0, width]);
 
 		// var color = d3.scale.linear()
 		// 			.domain([0, 170])

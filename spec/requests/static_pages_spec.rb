@@ -1,9 +1,12 @@
-
-
 require 'spec_helper'
 
 describe "Static pages" do
-
+  # describe "Other pages" do
+  #   before { visit '/static_pages/'}
+  #   it "should have base title 'This is the Sample App Page'" do
+  #   expect(page).to have_title('This is the Sample App Page')
+  #   end
+  # end
   describe "Home page" do
       
     before { visit '/static_pages/home' }
@@ -12,8 +15,8 @@ describe "Static pages" do
       expect(page).to have_content('Sample App')
     end
     it "should have title 'This is the Home Page'" do
-	  expect(page).to have_title('This is the Home Page')
-	end
+    expect(page).to have_title('This is the Home Page')
+    end
   end
   describe "Help Page" do
 	before { visit '/static_pages/help' }
@@ -23,16 +26,16 @@ describe "Static pages" do
   	end
   	it "should have title 'This is the Help Page'" do
 	  expect(page).to have_title('This is the Help Page')
-	end
+	  end
   end
   describe "About page" do
-	before { visit "/static_pages/about" }
+  	before { visit "/static_pages/about" }
 
-	it "should have content 'About'" do
-		expect(page).to have_content("About")
-	end
-	it "should have title 'This is the About Page'" do
-	  expect(page).to have_title('This is the About Page')
-	end
+  	it "should have content 'About'" do
+  		expect(page).to have_content("About")
+  	end
+  	it "should have title 'This is the About Page'" do
+  	  expect(page).to have_title('This is the About Page')
+  	end
   end
 end

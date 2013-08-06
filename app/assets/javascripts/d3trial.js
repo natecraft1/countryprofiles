@@ -1,6 +1,16 @@
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
 $("#target").keyup(function() {
   var result = $('#myInput').val();  
   console.log(result);
+
 
 
 // load and display the World
@@ -10,6 +20,7 @@ $("#target").keyup(function() {
     {
       if (topology.features[i].properties.name == result)
         { 
+          $("svg").remove();
           var found = topology.features[i].geometry; 
           makecunts();}
     }
@@ -24,6 +35,7 @@ $("#target").keyup(function() {
       var path = d3.geo.path()
           .projection(projection);
       console.log("called");
+      //make the country
       svg.selectAll("country")
         .data([found])
         .enter()
@@ -33,6 +45,7 @@ $("#target").keyup(function() {
       // projection.transition()
       // .duration(1500)
       // .scale(500);
+     
     }
 //       .transition()
 //       .duration(1500)

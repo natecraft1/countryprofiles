@@ -60,9 +60,10 @@ $("#myInput").keyup(function() {
         .enter()
         .append("path")
         .attr("class", "country")
-        .attr("d", path)
-        .on('click', clicked);;
-      
+        .attr("d", path);
+    
+      clicked(found);
+
 
         function clicked(d) {
 

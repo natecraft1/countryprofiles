@@ -25,24 +25,25 @@ $(document).ready(function() {
 
 $("#myInput").keyup(function() {
   var result = $('#myInput').val();  
+  console.log("hey");
 
 
 // load and display the World
   $.ajax({
-    url: '/assets/worldcountries.geo.json',
+    url: '/worldcountries.geo.json',
     dataType: 'json',
-    success: function(data) {
-    console.log("sup");
+    complete: function(data) {
+    var features = JSON.parse(data.responseText).features;
       // write code to parse the JSON portion of the response and save it in a variable called topology
     //    console.log(topology);
       
-    for (i=0; i < data.features.length; i++) {
+    for (i=0; i < features.length; i++) {
 
       
-      if (data.features[i].properties.name == result && $("." + data.features[i].properties.name.toLowerCase()).length == 0)
+      if (features[i].properties.name == result && $("." + features[i].properties.name.toLowerCase()).length == 0)
         { 
           $(".active").remove();
-          var found = data.features[i].geometry; 
+          var found = features[i].geometry; 
           
 
 
@@ -70,12 +71,12 @@ $("#myInput").keyup(function() {
         .data([found])
         .enter()
         .append("path")
-        .attr("class", data.features[i].properties.name.toLowerCase())
+        .attr("class", features[i].properties.name.toLowerCase())
         .attr("d", path);
     
       clicked(found);
 
-data.features[i].properties.name.toLowerCase()
+  features[i].properties.name.toLowerCase()
         function clicked(d) {
 
           var x, y, k;

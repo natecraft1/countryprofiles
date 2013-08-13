@@ -6,22 +6,30 @@ html, body {
 }
 
 
-input {
-  width: 300px;
+input[type="button"] {
+  width: 120px;
   height: 30px;
+  margin-top: 5px;
+  float: right;
   border: none;
-  top: 150px;
+  font-size:24px;
+  margin-right: 40px;
+  cursor: pointer;
+
+
 }
 input[type="text"]
+
 {
-    font-size:24px;
+  border: none;
+  font-size:24px;
 }
 
 input:focus {
   outline: none;
 }
 
-.country {
+.active {
   fill: #aaa;
   stroke: #fff;
   stroke-width: 0.75px;

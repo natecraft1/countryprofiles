@@ -30,10 +30,12 @@ $(document).ready(function() {
     success: function(data) {
       window.data = data;
       floatCountries();
+      $("#myInput").keyup(inputKeyup);
+
     }
   });
 
-function floatCountries() {
+  function floatCountries() {
     var scale = d3.scale.linear()
             .domain([0, data.features.length])
             .range([0, 1]);
@@ -56,7 +58,7 @@ function floatCountries() {
         .style('fill', function(d, i) { return colorscale(i); })
         .attr('font-size', 22)
         .transition()
-        .duration(function(d,i) { return Math.random()*330000 + 20000})
+        .duration(function(d,i) { return Math.random() * 330000 + 20000})
         .each(slide);
 
         function slide() {
@@ -65,27 +67,30 @@ function floatCountries() {
           textitem = textitem.transition()
                 .attr("dx", width + 250)
                 .transition()
-                .duration(function(d,i) { return Math.random()*330000 + 20000})
+                .duration(function(d,i) { return Math.random() * 330000 + 20000})
                 .attr("dx", -340)
                 .each("start", repeat);
           })();
         }
+      clickCunts();
+  }
+function clickCunts() {
+  d3.selectAll(".countries").on("click", function() {
+    console.log("cal");
+    result = d3.select(this).text();
+          
+          drawCunt(result);
+        
+  });
 }
 
+  function drawCunt(cunt) {
+    var features = data.features;
 
-$("#myInput").keyup(function() {
-  var result = $('#myInput').val();  
-
-
-// load and display the World
-  var features = data.features;
-      // write code to parse the JSON portion of the response and save it in a variable called topology
-    //    console.log(topology);
-      
     for (i=0; i < features.length; i++) {
 
       
-      if (features[i].properties.name == result && $("." + features[i].properties.name.toLowerCase()).length == 0)
+      if (features[i].properties.name == cunt && $("." + features[i].properties.name.toLowerCase()).length == 0)
         { 
           $(".active").remove();
           // $(".countries").remove();
@@ -95,10 +100,16 @@ $("#myInput").keyup(function() {
           makecunts(found);
         }
     }
-  return false;
-});
-  
+  }
 
+function inputKeyup() {
+
+  var result = $('#myInput').val();  
+  drawCunt(result);
+  return false;
+}
+  
+  
 
     function makecunts(country) {
       console.log("called");

@@ -14,7 +14,9 @@ $(document).ready(function() {
 
   var width = $(window).width(),
       height = ($(window).height()),
-      centered;
+      centered,
+      found,
+      foundname;
      
 
   var svg = d3.select("#container")
@@ -26,8 +28,13 @@ $(document).ready(function() {
     url: '/worldcountries.geo.json',
     dataType: 'json',
     success: function(data) {
+      window.data = data;
+      floatCountries();
+    }
+  });
 
-      var scale = d3.scale.linear()
+function floatCountries() {
+    var scale = d3.scale.linear()
             .domain([0, data.features.length])
             .range([0, 1]);
 
@@ -37,7 +44,7 @@ $(document).ready(function() {
 
       var feat = data.features;
 
-      svg.selectAll("countries")
+      svg.selectAll(".countries")
         .data(feat)
         .enter()
         .append("text")
@@ -63,31 +70,15 @@ $(document).ready(function() {
                 .each("start", repeat);
           })();
         }
-
-        d3.selectAll("countries")
-          .on("click", function() {})
-    }
-  });
-
-  
-
-  // var force = d3.layout.force()
-  //   .nodes("text")
-  //   .size([100, 200])
-  //   .start();
+}
 
 
 $("#myInput").keyup(function() {
   var result = $('#myInput').val();  
-  console.log("hey");
 
 
 // load and display the World
-  $.ajax({
-    url: '/worldcountries.geo.json',
-    dataType: 'json',
-    complete: function(data) {
-    var features = JSON.parse(data.responseText).features;
+  var features = data.features;
       // write code to parse the JSON portion of the response and save it in a variable called topology
     //    console.log(topology);
       
@@ -97,16 +88,21 @@ $("#myInput").keyup(function() {
       if (features[i].properties.name == result && $("." + features[i].properties.name.toLowerCase()).length == 0)
         { 
           $(".active").remove();
-          var found = features[i].geometry; 
+          // $(".countries").remove();
+          found = features[i].geometry; 
+          foundname =  features[i].properties.name.toLowerCase();
           
-
-
-        
-          makecunts();
+          makecunts(found);
         }
     }
+  return false;
+});
+  
 
-    function makecunts() {
+
+    function makecunts(country) {
+      console.log("called");
+      console.log(country);
       
       var g = svg.append("g").attr("stroke-width", 1.5);
       var projection = d3.geo.mercator()
@@ -122,35 +118,26 @@ $("#myInput").keyup(function() {
       g.append("g")
         .attr("class", "innerg")
         .selectAll("country")
-        .data([found])
+        .data([country])
         .enter()
         .append("path")
-        .attr("class", features[i].properties.name.toLowerCase())
+        .attr("class", foundname)
         .attr("d", path);
     
-      clicked(found);
-
-  features[i].properties.name.toLowerCase()
-        function clicked(d) {
+      enlarge(found)
+      
+      
+        function enlarge(d) {
 
           var x, y, k;
 
-          // if (d && centered !== d) {
             var centroid = path.centroid(d);
             console.log(centroid);
             x = centroid[0];
             y = centroid[1];
             k = 4;
             centered = d;
-          // } else {
-            // x = width / 2;
-            // y = height / 2;
-            // console.log(x);
-            //             console.log(y);
-
-            // k = 1;
-            // centered = null;
-          // }
+        
           console.log(x);
 
           g.selectAll("path")
@@ -163,15 +150,6 @@ $("#myInput").keyup(function() {
           svg.selectAll('.active').transition().delay(300).duration(1500).style('fill', 'lightblue')
         }
     }
-//       .transition()
-//       .duration(1500)
-
-//       .delay(1000).attr("transform", "scale(" + k + ")translate(" + x + width/2 + "," + y + ")")
-// ;
-    }
-  });
-  return false;
-});
 });
 
   // d3.select(window)

@@ -7,6 +7,7 @@ $(document).ready(function() {
     }
   });
 
+  
   $("#login").on("click", function() {
     $("#login").remove();
   });
@@ -20,7 +21,60 @@ $(document).ready(function() {
       .append("svg")
       .attr('width', width)
       .attr('height', height);
+  
+  $.ajax({
+    url: '/worldcountries.geo.json',
+    dataType: 'json',
+    success: function(data) {
 
+      var scale = d3.scale.linear()
+            .domain([0, data.features.length])
+            .range([0, 1]);
+
+      var colorscale = d3.scale.category20();
+
+      var spread = height / data.features.length;
+
+      var feat = data.features;
+
+      svg.selectAll("countries")
+        .data(feat)
+        .enter()
+        .append("text")
+        .attr("class", "countries")
+        .text(function(d) {return d.properties.name})
+        .attr("dy", function(d,i) {
+          return i * spread;
+        }).attr("dx", -340)
+        .style('fill', function(d, i) { return colorscale(i); })
+        .attr('font-size', 22)
+        .transition()
+        .duration(function(d,i) { return Math.random()*330000 + 20000})
+        .each(slide);
+
+        function slide() {
+          var textitem = d3.select(this);
+          (function repeat() {
+          textitem = textitem.transition()
+                .attr("dx", width + 250)
+                .transition()
+                .duration(function(d,i) { return Math.random()*330000 + 20000})
+                .attr("dx", -340)
+                .each("start", repeat);
+          })();
+        }
+
+        d3.selectAll("countries")
+          .on("click", function() {})
+    }
+  });
+
+  
+
+  // var force = d3.layout.force()
+  //   .nodes("text")
+  //   .size([100, 200])
+  //   .start();
 
 
 $("#myInput").keyup(function() {

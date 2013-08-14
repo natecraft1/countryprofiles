@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '2.3.2.0'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
+  gem 'database_cleaner'
 end
 
 group :test do

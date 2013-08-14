@@ -6,3 +6,5 @@ describe 'Home Page' do
 		expect(page).to have_field("Type a Country");
 	end
 end
+
+

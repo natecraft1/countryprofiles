@@ -18,9 +18,11 @@ input[type="button"] {
 
 
 }
-input[type="text"]
-
-{
+input[type="text"] {
+  border: none;
+  font-size:24px;
+}
+input[type="password"] {
   border: none;
   font-size:24px;
 }

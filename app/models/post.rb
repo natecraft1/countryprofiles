@@ -1,6 +1,6 @@
 class Post
-  include MongoMapper::Document
-  
-  key :topic, String
+  include MongoMapper::EmbeddedDocument
 
+  key :category, String
+  key :text, String
 end

@@ -4,7 +4,23 @@ html, body {
 .hidden {
   display: none;
 }
+.createpost {
+  margin-left: 30px;
+  text-decoration: none;
+}
+.signup {
+  text-decoration: none;
 
+}
+.innertopbar {
+  display: inline-block;
+}
+#posttext {
+  width: 500px;
+}
+#myInput {
+  width: 250px;
+}
 
 input[type="button"] {
   width: 120px;

@@ -1,7 +1,13 @@
 <% provide(:content, "Sample App") %>
 <form id="target">
-  <input type="text" id="myInput" name="myInput" placeholder="Type a Country" autocomplete="off"/>
-  <%= link_to "Sign Up", 'users/new'%>
+	<div class="topbar">
+	  <input type="text" id="myInput" name="myInput" placeholder="Type a Country" autocomplete="off"/>
+	  <div class="innertopbar">
+	  </div>
+  </div>
 </form> 
+
+<!-- 	  <%= link_to "Sign Up", 'users/new', {:class => 'signup'}%>
+
 
 

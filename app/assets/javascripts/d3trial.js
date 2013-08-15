@@ -31,7 +31,6 @@ $(document).ready(function() {
       window.data = data;
       floatCountries();
       $("#myInput").keyup(inputKeyup);
-
     }
   });
 
@@ -84,16 +83,19 @@ function clickCunts() {
   });
 }
 
-  function drawCunt(cunt) {
+  function drawCunt(country) {
     var features = data.features;
 
     for (i=0; i < features.length; i++) {
 
       
-      if (features[i].properties.name == cunt && $("." + features[i].properties.name.toLowerCase()).length == 0)
+      if (features[i].properties.name == country && $("." + features[i].properties.name.toLowerCase()).length == 0)
         { 
+            $(".innertopbar").html('');
+            $(".innertopbar").append("<input type='text' class='createpost' id='cat" + country + "' placeholder='Category'></input>" +
+              "<input type='text' class='createpost' id='post" + country + "' placeholder='Text'></input>")
+
           $(".active").remove();
-          // $(".countries").remove();
           found = features[i].geometry; 
           foundname =  features[i].properties.name.toLowerCase();
           

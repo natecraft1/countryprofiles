@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 gem 'mongo_mapper', github: 'jnunemaker/mongomapper'
 gem 'bson_ext'
-
+gem 'json'
 gem 'rails', '4.0.0'
 gem 'bootstrap-sass', '2.3.2.0'
 

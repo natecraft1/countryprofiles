@@ -12,7 +12,13 @@ html, body {
   text-decoration: none;
 
 }
-.innertopbar {
+#post_country {
+/*  padding-top: 16px;
+*/}
+.topbar {
+  height: 40px;
+}
+.topright {
   display: inline-block;
 }
 #posttext {
@@ -28,7 +34,7 @@ input[type="button"] {
   margin-top: 5px;
   float: right;
   border: none;
-  font-size:24px;
+  font-size:16px;
   margin-right: 40px;
   cursor: pointer;
 
@@ -36,7 +42,7 @@ input[type="button"] {
 }
 input[type="text"] {
   border: none;
-  font-size:24px;
+  font-size:16px;
 }
 input[type="password"] {
   border: none;

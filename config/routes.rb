@@ -1,6 +1,10 @@
 Michaelhartl::Application.routes.draw do
   get "users/new"
-  get "posts/new"
+  
+  resources :countries do
+    resources :posts
+  end
+
   get "static_pages/home"
   get "static_pages/help"
   get "static_pages/about"

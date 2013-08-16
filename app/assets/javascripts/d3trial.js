@@ -91,10 +91,12 @@ function clickCunts() {
       
       if (features[i].properties.name == country && $("." + features[i].properties.name.toLowerCase()).length == 0)
         { 
-            $(".innertopbar").html('');
-            $(".innertopbar").append("<input type='text' class='createpost' id='cat" + country + "' placeholder='Category'></input>" +
-              "<input type='text' class='createpost' id='post" + country + "' placeholder='Text'></input>")
-
+            // $(".innertopbar").html('');
+            // $(".innertopbar").append("<input type='text' class='createpost' id='cat" + country + "' placeholder='Category'></input>" +
+            //   "<input type='text' class='createpost' id='post" + country + "' placeholder='Text'></input>")
+          
+          $("#categoryandtext").addClass("topright");
+          $("#categoryandtext").removeClass("hidden");
           $(".active").remove();
           found = features[i].geometry; 
           foundname =  features[i].properties.name.toLowerCase();

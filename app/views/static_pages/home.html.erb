@@ -1,13 +1,18 @@
+<div class="topbar">
 <% provide(:content, "Sample App") %>
-<form id="target">
-	<div class="topbar">
-	  <input type="text" id="myInput" name="myInput" placeholder="Type a Country" autocomplete="off"/>
-	  <div class="innertopbar">
-	  </div>
+
+<%= form_for @post do |f| %>
+
+		<%= f.select :country, Country.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Select Country' } %>
+	
+	<div id="categoryandtext" class="hidden">
+		<%= f.select :category, Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Category' } %>
+
+	  <%= f.text_field :content, :placeholder => "say what you will" %>
+	  
+	  <%= f.submit "Post" %>
   </div>
-</form> 
+ 
+<% end %>
 
-<!-- 	  <%= link_to "Sign Up", 'users/new', {:class => 'signup'}%>
-
-
-
+</div>

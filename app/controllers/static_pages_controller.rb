@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
   	@title = "Home"
+  	# @country = 
+  	@post = Post.new
   end
 
   def help

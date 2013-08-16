@@ -1,0 +1,10 @@
+<%= form_for @post do |f| %>
+
+	<%= f.select :country, Country.all.collect { |c| [ c.name, c.id ] }, { include_blank: false } %>
+	<%= f.select :category, Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: false } %>
+  <%= f.text_field :content, :placeholder => "say what you will" %>
+  <%= f.submit "Post" %>
+
+<% end %>
+
+

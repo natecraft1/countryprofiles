@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   
   def create
   	country = Country.find(params[:post][:country])
-
+  	
   	post = Post.new(post_params)
   	country.posts << post
   	country.save

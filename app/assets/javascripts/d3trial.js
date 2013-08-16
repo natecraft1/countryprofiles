@@ -7,6 +7,15 @@ $(document).ready(function() {
     }
   });
 
+  $('#new_post').on("submit", function() {
+    $.ajax({
+      method: "POST",
+      url: "/posts",
+      data: { post: { content: $("#post_content").val() } }
+
+    });
+    return false;
+  });
   
   $("#login").on("click", function() {
     $("#login").remove();
@@ -76,9 +85,14 @@ $(document).ready(function() {
 function clickCunts() {
   d3.selectAll(".countries").on("click", function() {
     result = d3.select(this).text();
-      
-      $("select option[value=" + result + "]").attr('selected', 'selected');
-    
+    console.log(result);
+        
+      // $('select').find("option[value=" + result + "]")​​​​​​​​​​​​​​​​​.attr('selected', true ); 
+      // $("#post_country").val(result).attr('selected', 'selected');
+      $("select option").filter(function() {
+        return $(this).text() == result;
+      }).prop("selected", true);
+
     console.log(result.toLowerCase());
     drawCunt(result);
     history.pushState({}, '', result.toLowerCase());

@@ -3,6 +3,5 @@ class Category
 
   key :name, String
 
-  many :posts
 
 end

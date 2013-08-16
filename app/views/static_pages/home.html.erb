@@ -1,15 +1,14 @@
 <div class="topbar">
-<% provide(:content, "Sample App") %>
 
 <%= form_for @post do |f| %>
-
-		<%= f.select :country, Country.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Select Country' } %>
+		<% sorted = Country.all.sort { |a,b| a.name.downcase <=> b.name.downcase } %>
+		<%= f.select :country, sorted.collect { |c| [ c.name, c.id ] }, { include_blank: 'Select Country' } %>
 	
 	<div id="categoryandtext" class="hidden">
-		<%= f.select :category, Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Category' } %>
+		<%# f.select :category, Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Category' } %>
 
 	  <%= f.text_field :content, :placeholder => "say what you will" %>
-	  
+
 	  <%= f.submit "Post" %>
   </div>
  

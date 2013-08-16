@@ -11,14 +11,14 @@ describe Post do
 
 
 	describe "should save a post to a country" do
-		before do 
-			fill_in :content, :with => "Hello"
-			click_button "Post"
-		end
+		# before do 
+		# 	fill_in :content, :with => "Hello"
+		# 	click_button "Post"
+		# end
 
-		it "should save a post to a specific country" do
-			expect(Country.find_by_name("Slovenia").posts.first.content).to eq("Dober dan") 
-		end
+		# it "should save a post to a specific country" do
+		# 	expect(Country.find_by_name("Slovenia").posts.first.content).to eq("Dober dan") 
+		# end
 
 	end
 end

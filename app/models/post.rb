@@ -1,7 +1,6 @@
 class Post
   include MongoMapper::EmbeddedDocument
 
-  belongs_to :category
   belongs_to :country
   
   key :content, String

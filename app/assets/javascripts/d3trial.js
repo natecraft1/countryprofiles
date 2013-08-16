@@ -75,11 +75,19 @@ $(document).ready(function() {
   }
 function clickCunts() {
   d3.selectAll(".countries").on("click", function() {
-    console.log("cal");
     result = d3.select(this).text();
-          
-          drawCunt(result);
-        
+      
+      $("select option[value=" + result + "]").attr('selected', 'selected');
+    
+    console.log(result.toLowerCase());
+    drawCunt(result);
+    history.pushState({}, '', result.toLowerCase());
+    //ajax call to set the correct path
+    // $.ajax({
+    //   method: 'GET',
+    //   url: result.toLowerCase()
+    // });
+    return false;
   });
 }
 
@@ -94,7 +102,8 @@ function clickCunts() {
             // $(".innertopbar").html('');
             // $(".innertopbar").append("<input type='text' class='createpost' id='cat" + country + "' placeholder='Category'></input>" +
             //   "<input type='text' class='createpost' id='post" + country + "' placeholder='Text'></input>")
-          
+          // d3.selectAll(".countries").transition().duration(1500).attr("dx", -3000);
+
           $("#categoryandtext").addClass("topright");
           $("#categoryandtext").removeClass("hidden");
           $(".active").remove();

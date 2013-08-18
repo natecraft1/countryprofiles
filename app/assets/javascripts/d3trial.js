@@ -7,11 +7,18 @@ $(document).ready(function() {
     }
   });
 
+
   $('#new_post').on("submit", function() {
     $.ajax({
       method: "POST",
       url: "/posts",
-      data: { post: { content: $("#post_content").val() } }
+      data: { post: { country: $('#post_country option:selected').val(), content: $("#post_content").val() } },
+      success: function() {
+         d3.selectAll(".countries").transition()
+               .duration(function(d, i) { return i * 10 + 20 })
+              .attr("dx", -2000);
+      }
+   
 
     });
     return false;
@@ -40,8 +47,15 @@ $(document).ready(function() {
       window.data = data;
       floatCountries();
       $("#myInput").keyup(inputKeyup);
+      $("select").change(drawSelected);
+      
     }
   });
+  function drawSelected() {
+        var selected = $('select option:selected').text();
+        drawCunt(selected);
+  }
+  
 
   function floatCountries() {
     var scale = d3.scale.linear()
@@ -83,6 +97,7 @@ $(document).ready(function() {
       clickCunts();
   }
 function clickCunts() {
+
   d3.selectAll(".countries").on("click", function() {
     result = d3.select(this).text();
     console.log(result);
@@ -96,16 +111,12 @@ function clickCunts() {
     console.log(result.toLowerCase());
     drawCunt(result);
     history.pushState({}, '', result.toLowerCase());
-    //ajax call to set the correct path
-    // $.ajax({
-    //   method: 'GET',
-    //   url: result.toLowerCase()
-    // });
     return false;
   });
 }
 
   function drawCunt(country) {
+    console.log(country);
     var features = data.features;
 
     for (i=0; i < features.length; i++) {
@@ -113,11 +124,7 @@ function clickCunts() {
       
       if (features[i].properties.name == country && $("." + features[i].properties.name.toLowerCase()).length == 0)
         { 
-            // $(".innertopbar").html('');
-            // $(".innertopbar").append("<input type='text' class='createpost' id='cat" + country + "' placeholder='Category'></input>" +
-            //   "<input type='text' class='createpost' id='post" + country + "' placeholder='Text'></input>")
-          // d3.selectAll(".countries").transition().duration(1500).attr("dx", -3000);
-
+    
           $("#categoryandtext").addClass("topright");
           $("#categoryandtext").removeClass("hidden");
           $(".active").remove();

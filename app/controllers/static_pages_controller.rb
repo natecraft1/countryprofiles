@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   	@title = "Home"
   	# @country = 
   	@post = Post.new
+  	@country = params[:country]
   end
 
   def help

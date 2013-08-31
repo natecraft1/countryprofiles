@@ -53,7 +53,7 @@ $(document).ready(function() {
   });
   function drawSelected() {
         var selected = $('select option:selected').text();
-        drawCunt(selected);
+        drawCountry(selected);
   }
   
 
@@ -94,9 +94,9 @@ $(document).ready(function() {
                 .each("start", repeat);
           })();
         }
-      clickCunts();
+      clickCountry();
   }
-function clickCunts() {
+function clickCountry() {
 
   d3.selectAll(".countries").on("click", function() {
     result = d3.select(this).text();
@@ -109,13 +109,13 @@ function clickCunts() {
       }).prop("selected", true);
 
     console.log(result.toLowerCase());
-    drawCunt(result);
+    drawCountry(result);
     history.pushState({}, '', result.toLowerCase());
     return false;
   });
 }
 
-  function drawCunt(country) {
+  function drawCountry(country) {
     console.log(country);
     var features = data.features;
 
@@ -131,7 +131,7 @@ function clickCunts() {
           found = features[i].geometry; 
           foundname =  features[i].properties.name.toLowerCase();
           
-          makecunts(found);
+          makecountry(found);
         }
     }
   }
@@ -139,13 +139,13 @@ function clickCunts() {
 function inputKeyup() {
 
   var result = $('#myInput').val();  
-  drawCunt(result);
+  drawCountry(result);
   return false;
 }
   
   
 
-    function makecunts(country) {
+    function makecountry(country) {
       console.log("called");
       console.log(country);
       
